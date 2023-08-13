@@ -1,0 +1,23 @@
+GET http://transcargo.duckdns.org:80/usuarios
+
+###
+POST http://transcargo.duckdns.org:80/login
+Content-Type: "application/json"
+
+{
+  "email" : "jaum@gmail.com",
+  "senha" : "123"
+}
+
+###
+GET http://transcargo.duckdns.org:80/categorias
+
+###
+POST http://transcargo.duckdns.org:80/categorias
+Content-Type: "application/json"
+
+{
+  "nome" : "Pães"
+}
+
+###
