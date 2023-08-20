@@ -1,21 +1,27 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
 
-import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { globalStyle } from '../styles'
 import colors from '../../utils/colors'
 import { Icon } from '@rneui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
 
-  async function logout(){
+  const navigate = navigation.navigate;
+
+  useEffect(()=>{
+    console.log(route.params)
+  },[])
+
+  async function logout() {
     await AsyncStorage.removeItem('@token');
-    navigation.navigate('Login')
+    navigate('Login')
   }
 
   return (
     <View style={globalStyle.container}>
-      <Icon        
+      <Icon
         name='power'
         type='ionicon'
         size={50}
@@ -25,13 +31,13 @@ export default function Home({ navigation }) {
       />
       <TouchableOpacity
         style={globalStyle.buttonMenu}
-        onPress={()=>navigation.navigate('Root', {screen: 'NewRevenue'})}
+        onPress={() => navigate('Root', { screen: 'NewRevenue' })}
       >
         <Text style={[globalStyle.subTitle, globalStyle.white]}>Nova Receita</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={globalStyle.buttonMenu}
-        onPress={()=>navigation.navigate('Root', {screen: 'Revenues'})}
+        onPress={() => navigate('Root', { screen: 'Revenues', options: { usuario: usuario } })}
       >
         <Text style={[globalStyle.subTitle, globalStyle.white]}>Receitas</Text>
       </TouchableOpacity>
@@ -41,7 +47,7 @@ export default function Home({ navigation }) {
         size={25}
         color={colors.blue}
         containerStyle={globalStyle.anchorButton}
-        onPress={()=>navigation.navigate('Root', {screen: 'NewRevenue'})}
+        onPress={()=>navigate('Root', {screen: 'NewRevenue'})}
       /> */}
     </View>
   )

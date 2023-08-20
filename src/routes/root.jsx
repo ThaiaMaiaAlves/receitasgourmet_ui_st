@@ -16,13 +16,13 @@ export default function Root() {
       headerShown: true,
       title: 'Receitas Gourmet',
       statusBarColor: colors.blue,
-      headerStyle:{backgroundColor: colors.blue},
+      headerStyle: { backgroundColor: colors.blue },
       headerTintColor: colors.white
     }}>
-      <Stack.Screen name='Home' component={Home}  />
+      <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='Revenue' component={Revenue} />
-      <Stack.Screen name='Revenues' component={Revenues} />
-      <Stack.Screen name='NewRevenue' component={NewRevenue} />
+      <Stack.Screen name='Revenues' component={Revenues} options={{ title: 'Receitas' }} />
+      <Stack.Screen name='NewRevenue' component={NewRevenue} options={{ title: 'Nova Receita' }} />
     </Stack.Navigator>
   )
 }

@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { globalStyle } from '../../styles'
 import api from '../../../services/api';
 
-export default function Revenues({}) {
+export default function Revenues({navigation: {navigate, usuario}}) {
   const [receitas, setReceitas] = useState([])
 
   useEffect(()=>{
@@ -17,6 +17,7 @@ export default function Revenues({}) {
         '/receitas'
       )
       if(res.status == 200){
+        console.log(res.data);
         setReceitas(res.data)
       }
     } catch (err) {
@@ -25,15 +26,21 @@ export default function Revenues({}) {
   }
 
   function renderReceita(receita, id){
-    return <View key={id} style={{ width: '100%', height: 50}}>
-      <Text>{receita.nome}</Text>
+    return <View 
+    key={id} 
+    style={{ 
+      width: '100%', 
+      height: 50, 
+      alignItems: 'flex-start',
+      justifyContent: 'center'
+      }}>
+      <Text style={{fontSize: 20}}>{receita.nome_receita}</Text>
     </View>
   }
 
   return (
     <View style={globalStyle.container}>
-      {/* <Text>Revenues</Text> */}
-      <View>
+      <View style={{width: '100%', paddingHorizontal: 20}}>
         {receitas && receitas.map((item, index) => renderReceita(item, index))}
       </View>
     </View>
